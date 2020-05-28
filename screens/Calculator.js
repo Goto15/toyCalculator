@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import CalcButton from '../components/CalcButton';
 
 const Calculator = ({ navigation }) => {
@@ -7,11 +13,13 @@ const Calculator = ({ navigation }) => {
   const [justAnswered, setJustAnswered] = useState(false);
 
   const appendCharToDisplay = (event) => {
-    if (justAnswered) {
-      setJustAnswered(false);
-      setDisplayText(event);
-    } else {
-      setDisplayText(displayText + event);
+    if (displayText.length <= 35) {
+      if (justAnswered) {
+        setJustAnswered(false);
+        setDisplayText(event);
+      } else {
+        setDisplayText(displayText + event);
+      }
     }
   };
 
@@ -26,6 +34,11 @@ const Calculator = ({ navigation }) => {
 
   return (
     <SafeAreaView>
+      <View style={settingsButton.container}>
+        <TouchableOpacity onPress={() => navigation.push('Settings')}>
+          <Text style={settingsButton.text}>Settings ></Text>
+        </TouchableOpacity>
+      </View>
       <View style={displayStyle.container}>
         <Text style={displayStyle.text}>{displayText}</Text>
       </View>
@@ -81,10 +94,11 @@ const clearButton = StyleSheet.create({
 
 const displayStyle = StyleSheet.create({
   container: {
-    height: '25%',
+    height: '27%',
     justifyContent: 'center',
   },
   text: {
+    fontVariant: ['tabular-nums'],
     fontSize: 50,
   },
 });
@@ -134,6 +148,16 @@ const operButton = StyleSheet.create({
     color: 'black',
     fontSize: 32,
     textAlign: 'center',
+  },
+});
+
+const settingsButton = StyleSheet.create({
+  container: {
+    flexDirection: 'row-reverse',
+    marginLeft: '4%',
+  },
+  text: {
+    padding: 5,
   },
 });
 
