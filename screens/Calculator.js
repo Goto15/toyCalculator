@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import CalcButton from '../components/CalcButton';
 
-const Calculator = ({ navigation }) => {
+const Calculator = ({ navigation, colors }) => {
   const [displayText, setDisplayText] = useState('');
   const [justAnswered, setJustAnswered] = useState(false);
 
@@ -32,8 +32,106 @@ const Calculator = ({ navigation }) => {
     setDisplayText('');
   };
 
+  const clearButton = StyleSheet.create({
+    button: {
+      backgroundColor: colors.clear.background,
+      borderRadius: 10,
+      justifyContent: 'center',
+      marginLeft: '2%',
+      marginTop: '2%',
+      width: '47%',
+    },
+    text: {
+      color: colors.clear.text,
+      fontSize: 32,
+      textAlign: 'center',
+    },
+  });
+
+  const displayStyle = StyleSheet.create({
+    container: {
+      height: '27%',
+      justifyContent: 'center',
+    },
+    text: {
+      fontVariant: ['tabular-nums'],
+      fontSize: 50,
+    },
+  });
+
+  const enterButton = StyleSheet.create({
+    button: {
+      backgroundColor: colors.enter.background,
+      borderRadius: 10,
+      justifyContent: 'center',
+      marginLeft: '2%',
+      marginTop: '2%',
+      width: '47%',
+    },
+    text: {
+      color: colors.enter.text,
+      fontSize: 32,
+      textAlign: 'center',
+    },
+  });
+
+  const numButton = StyleSheet.create({
+    button: {
+      backgroundColor: colors.nums.background,
+      borderRadius: 10,
+      justifyContent: 'center',
+      marginLeft: '2%',
+      marginTop: '2%',
+      width: '22.5%',
+    },
+    text: {
+      color: colors.nums.text,
+      fontSize: 32,
+      textAlign: 'center',
+    },
+  });
+
+  const operButton = StyleSheet.create({
+    button: {
+      backgroundColor: colors.opers.background,
+      borderRadius: 10,
+      justifyContent: 'center',
+      marginLeft: '2%',
+      marginTop: '2%',
+      width: '22.5%',
+    },
+    text: {
+      color: colors.opers.text,
+      fontSize: 32,
+      textAlign: 'center',
+    },
+  });
+
+  const settingsButton = StyleSheet.create({
+    container: {
+      flexDirection: 'row-reverse',
+      marginLeft: '4%',
+    },
+    text: {
+      padding: 5,
+    },
+  });
+
+  const styles = StyleSheet.create({
+    background: {
+      backgroundColor: colors.background.background,
+    },
+    buttonContainer: {
+      height: '70%',
+    },
+    row: {
+      flexDirection: 'row',
+      height: 100,
+    },
+  });
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.background}>
       <View style={settingsButton.container}>
         <TouchableOpacity onPress={() => navigation.push('Settings')}>
           <Text style={settingsButton.text}>Settings ></Text>
@@ -75,100 +173,5 @@ const Calculator = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-const clearButton = StyleSheet.create({
-  button: {
-    backgroundColor: 'red',
-    borderRadius: 10,
-    justifyContent: 'center',
-    marginLeft: '2%',
-    marginTop: '2%',
-    width: '47%',
-  },
-  text: {
-    color: 'white',
-    fontSize: 32,
-    textAlign: 'center',
-  },
-});
-
-const displayStyle = StyleSheet.create({
-  container: {
-    height: '27%',
-    justifyContent: 'center',
-  },
-  text: {
-    fontVariant: ['tabular-nums'],
-    fontSize: 50,
-  },
-});
-
-const enterButton = StyleSheet.create({
-  button: {
-    backgroundColor: 'deepskyblue',
-    borderRadius: 10,
-    justifyContent: 'center',
-    marginLeft: '2%',
-    marginTop: '2%',
-    width: '47%',
-  },
-  text: {
-    color: 'white',
-    fontSize: 32,
-    textAlign: 'center',
-  },
-});
-
-const numButton = StyleSheet.create({
-  button: {
-    backgroundColor: 'grey',
-    borderRadius: 10,
-    justifyContent: 'center',
-    marginLeft: '2%',
-    marginTop: '2%',
-    width: '22.5%',
-  },
-  text: {
-    color: 'white',
-    fontSize: 32,
-    textAlign: 'center',
-  },
-});
-
-const operButton = StyleSheet.create({
-  button: {
-    backgroundColor: '#d3d3d3',
-    borderRadius: 10,
-    justifyContent: 'center',
-    marginLeft: '2%',
-    marginTop: '2%',
-    width: '22.5%',
-  },
-  text: {
-    color: 'black',
-    fontSize: 32,
-    textAlign: 'center',
-  },
-});
-
-const settingsButton = StyleSheet.create({
-  container: {
-    flexDirection: 'row-reverse',
-    marginLeft: '4%',
-  },
-  text: {
-    padding: 5,
-  },
-});
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    height: '70%',
-  },
-  row: {
-    flexDirection: 'row',
-    height: 100,
-  },
-});
 
 export default Calculator;
