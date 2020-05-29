@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 
 const ColorChanger = ({ color, component }) => {
-  const [backgroundColor, setBackgroundColor] = useState(color.background)
+  const [backgroundColor, setBackgroundColor] = useState(color.background);
 
   const styles = StyleSheet.create({
     component: {
@@ -11,7 +11,7 @@ const ColorChanger = ({ color, component }) => {
     newColor: {
       borderBottomColor: '#232323',
       borderBottomWidth: 1,
-      color: backgroundColor,
+      color: backgroundColor === 'white' ? 'black' : backgroundColor,
       height: 40,
     },
   });
